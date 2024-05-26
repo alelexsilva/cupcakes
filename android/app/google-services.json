@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "98144504069",
+    "project_id": "loja-de-cupcakes-q1o42a",
+    "storage_bucket": "loja-de-cupcakes-q1o42a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98144504069:android:db6c96ef21395289034f6c",
+        "android_client_info": {
+          "package_name": "com.mycompany.lojadecupcakes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBn39-WOVkAhrw2iWcIutqLuCufnzcbEWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
