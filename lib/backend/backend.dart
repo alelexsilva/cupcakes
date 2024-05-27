@@ -7,7 +7,7 @@ import 'schema/util/firestore_util.dart';
 
 import 'schema/users_record.dart';
 import 'schema/firebase_cupcakes_record.dart';
-import 'schema/firebase_carrinho_cupcakes_record.dart';
+import 'schema/firebase_nutri_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -18,7 +18,7 @@ export 'schema/util/schema_util.dart';
 
 export 'schema/users_record.dart';
 export 'schema/firebase_cupcakes_record.dart';
-export 'schema/firebase_carrinho_cupcakes_record.dart';
+export 'schema/firebase_nutri_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -94,47 +94,45 @@ Future<List<FirebaseCupcakesRecord>> queryFirebaseCupcakesRecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query FirebaseCarrinhoCupcakesRecords (as a Stream and as a Future).
-Future<int> queryFirebaseCarrinhoCupcakesRecordCount({
+/// Functions to query FirebaseNutriRecords (as a Stream and as a Future).
+Future<int> queryFirebaseNutriRecordCount({
   DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
 }) =>
     queryCollectionCount(
-      FirebaseCarrinhoCupcakesRecord.collection(parent),
+      FirebaseNutriRecord.collection(parent),
       queryBuilder: queryBuilder,
       limit: limit,
     );
 
-Stream<List<FirebaseCarrinhoCupcakesRecord>>
-    queryFirebaseCarrinhoCupcakesRecord({
+Stream<List<FirebaseNutriRecord>> queryFirebaseNutriRecord({
   DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
-        queryCollection(
-          FirebaseCarrinhoCupcakesRecord.collection(parent),
-          FirebaseCarrinhoCupcakesRecord.fromSnapshot,
-          queryBuilder: queryBuilder,
-          limit: limit,
-          singleRecord: singleRecord,
-        );
+    queryCollection(
+      FirebaseNutriRecord.collection(parent),
+      FirebaseNutriRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
 
-Future<List<FirebaseCarrinhoCupcakesRecord>>
-    queryFirebaseCarrinhoCupcakesRecordOnce({
+Future<List<FirebaseNutriRecord>> queryFirebaseNutriRecordOnce({
   DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
-        queryCollectionOnce(
-          FirebaseCarrinhoCupcakesRecord.collection(parent),
-          FirebaseCarrinhoCupcakesRecord.fromSnapshot,
-          queryBuilder: queryBuilder,
-          limit: limit,
-          singleRecord: singleRecord,
-        );
+    queryCollectionOnce(
+      FirebaseNutriRecord.collection(parent),
+      FirebaseNutriRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
 
 Future<int> queryCollectionCount(
   Query collection, {

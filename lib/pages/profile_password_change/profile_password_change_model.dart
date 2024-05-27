@@ -1,8 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'password_change_widget.dart' show PasswordChangeWidget;
+import 'profile_password_change_widget.dart' show ProfilePasswordChangeWidget;
 import 'package:flutter/material.dart';
 
-class PasswordChangeModel extends FlutterFlowModel<PasswordChangeWidget> {
+class ProfilePasswordChangeModel
+    extends FlutterFlowModel<ProfilePasswordChangeWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for senhaatual widget.

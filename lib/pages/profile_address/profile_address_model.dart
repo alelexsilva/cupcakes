@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'address_widget.dart' show AddressWidget;
+import 'profile_address_widget.dart' show ProfileAddressWidget;
 import 'package:flutter/material.dart';
 
-class AddressModel extends FlutterFlowModel<AddressWidget> {
+class ProfileAddressModel extends FlutterFlowModel<ProfileAddressWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for address_rua widget.

@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/components/nutri_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_count_controller.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -91,25 +92,6 @@ class _CupcakeProductWidgetState extends State<CupcakeProductWidget>
           ),
         ],
       ),
-      'containerOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(0.0, 140.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
     });
     setupAnimations(
       animationsMap.values.where((anim) =>
@@ -117,8 +99,6 @@ class _CupcakeProductWidgetState extends State<CupcakeProductWidget>
           !anim.applyInitialState),
       this,
     );
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -160,91 +140,98 @@ class _CupcakeProductWidgetState extends State<CupcakeProductWidget>
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            appBar: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-              automaticallyImplyLeading: false,
-              leading: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.pop();
-                },
-                child: Icon(
-                  Icons.arrow_back_rounded,
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  size: 24.0,
+            appBar: PreferredSize(
+              preferredSize:
+                  Size.fromHeight(MediaQuery.sizeOf(context).height * 0.05),
+              child: AppBar(
+                backgroundColor:
+                    FlutterFlowTheme.of(context).secondaryBackground,
+                automaticallyImplyLeading: false,
+                leading: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pop();
+                  },
+                  child: Icon(
+                    Icons.arrow_back_rounded,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 24.0,
+                  ),
                 ),
-              ),
-              actions: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 24.0, 0.0),
-                        child: badges.Badge(
-                          badgeContent: Text(
-                            FFAppState().appCart.length.toString(),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Space Grotesk',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
+                actions: [
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 8.0, 24.0, 0.0),
+                          child: badges.Badge(
+                            badgeContent: Text(
+                              FFAppState().appCart.length.toString(),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Space Grotesk',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                            showBadge: true,
+                            shape: badges.BadgeShape.circle,
+                            badgeColor: FlutterFlowTheme.of(context).primary,
+                            elevation: 4.0,
+                            padding: const EdgeInsets.all(8.0),
+                            position: badges.BadgePosition.topEnd(),
+                            animationType: badges.BadgeAnimationType.scale,
+                            toAnimate: true,
+                            child: FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 30.0,
+                              buttonSize: 48.0,
+                              icon: Icon(
+                                Icons.shopping_cart_outlined,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 25.0,
+                              ),
+                              onPressed: () async {
+                                context.pushNamed('cart');
+                              },
+                            ),
                           ),
-                          showBadge: true,
-                          shape: badges.BadgeShape.circle,
-                          badgeColor: FlutterFlowTheme.of(context).primary,
-                          elevation: 4.0,
-                          padding: const EdgeInsets.all(8.0),
-                          position: badges.BadgePosition.topEnd(),
-                          animationType: badges.BadgeAnimationType.scale,
-                          toAnimate: true,
+                        ),
+                        Align(
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 30.0,
-                            buttonSize: 48.0,
+                            borderColor: FlutterFlowTheme.of(context).primary,
+                            borderRadius: 20.0,
+                            borderWidth: 1.0,
+                            buttonSize: 35.0,
+                            fillColor: FlutterFlowTheme.of(context).accent1,
                             icon: Icon(
-                              Icons.shopping_cart_outlined,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 25.0,
+                              Icons.settings,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 20.0,
                             ),
                             onPressed: () async {
-                              context.pushNamed('cart');
+                              context.pushNamed('profile');
                             },
                           ),
                         ),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderColor: FlutterFlowTheme.of(context).primary,
-                          borderRadius: 20.0,
-                          borderWidth: 1.0,
-                          buttonSize: 35.0,
-                          fillColor: FlutterFlowTheme.of(context).accent1,
-                          icon: Icon(
-                            Icons.settings,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 20.0,
-                          ),
-                          onPressed: () async {
-                            context.pushNamed('profile');
-                          },
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-              centerTitle: false,
-              elevation: 0.0,
+                ],
+                centerTitle: false,
+                elevation: 0.0,
+              ),
             ),
             body: SafeArea(
               top: true,
@@ -257,22 +244,76 @@ class _CupcakeProductWidgetState extends State<CupcakeProductWidget>
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 16.0),
-                            child: Hero(
-                              tag: cupcakeProductFirebaseCupcakesRecord.img,
-                              transitionOnUserGestures: true,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(0.0),
-                                child: Image.network(
-                                  cupcakeProductFirebaseCupcakesRecord.img,
-                                  width: double.infinity,
-                                  height: 430.0,
-                                  fit: BoxFit.cover,
-                                ),
+                          Hero(
+                            tag: cupcakeProductFirebaseCupcakesRecord.img,
+                            transitionOnUserGestures: true,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(0.0),
+                              child: Image.network(
+                                cupcakeProductFirebaseCupcakesRecord.img,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: MediaQuery.sizeOf(context).height * 0.3,
+                                fit: BoxFit.fill,
+                                alignment: const Alignment(0.0, 0.0),
                               ),
                             ),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Builder(
+                                builder: (context) => Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 10.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: const AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: SizedBox(
+                                                height: 540.0,
+                                                width: 315.0,
+                                                child: NutriWidget(
+                                                  parNutri:
+                                                      cupcakeProductFirebaseCupcakesRecord,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ).then((value) => setState(() {}));
+                                    },
+                                    child: Icon(
+                                      Icons.info_rounded,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 24.0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
@@ -299,6 +340,7 @@ class _CupcakeProductWidgetState extends State<CupcakeProductWidget>
                                     .description,
                                 'dft_desc',
                               ),
+                              maxLines: 2,
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -417,340 +459,248 @@ class _CupcakeProductWidgetState extends State<CupcakeProductWidget>
                             ).animateOnPageLoad(
                                 animationsMap['rowOnPageLoadAnimation']!),
                           ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 34.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Stack(
+                                  children: [
+                                    if (FFAppState().appCart.contains(
+                                            cupcakeProductFirebaseCupcakesRecord
+                                                .reference) ==
+                                        true)
+                                      FFButtonWidget(
+                                        onPressed: () async {
+                                          // reduzir valor somaCart
+                                          setState(() {
+                                            FFAppState()
+                                                .appSomaCart = FFAppState()
+                                                    .appSomaCart +
+                                                functions.fncSomaNegativa(
+                                                    cupcakeProductFirebaseCupcakesRecord
+                                                        .qtnPrice);
+                                          });
+                                          // att firebasee quantidade
+
+                                          await cupcakeProductFirebaseCupcakesRecord
+                                              .reference
+                                              .update(
+                                                  createFirebaseCupcakesRecordData(
+                                            quantity:
+                                                _model.countControllerValue,
+                                          ));
+                                          // update appPrecoQtd
+                                          setState(() {
+                                            FFAppState().appTempQntPrice =
+                                                functions.fncQntPrice(
+                                                    cupcakeProductFirebaseCupcakesRecord
+                                                        .price,
+                                                    _model.localAppQntItens,
+                                                    FFAppState()
+                                                        .appTempQntPrice);
+                                          });
+                                          // att firebasee qntprice
+
+                                          await cupcakeProductFirebaseCupcakesRecord
+                                              .reference
+                                              .update(
+                                                  createFirebaseCupcakesRecordData(
+                                            qtnPrice:
+                                                FFAppState().appTempQntPrice,
+                                          ));
+                                          // soma total carrinho
+                                          setState(() {
+                                            FFAppState()
+                                                .appSomaCart = FFAppState()
+                                                    .appSomaCart +
+                                                functions.fncQntPrice(
+                                                    cupcakeProductFirebaseCupcakesRecord
+                                                        .price,
+                                                    _model
+                                                        .countControllerValue!,
+                                                    FFAppState()
+                                                        .appTempQntPrice);
+                                          });
+                                          // pop up ok
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: const Text('atualizado'),
+                                                content: const Text(
+                                                    'Quantidade de itens atualizada!'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+
+                                          context.pushNamed(
+                                              'home_cupcakelist_grid');
+                                        },
+                                        text: 'Atualizar Carrinho',
+                                        options: FFButtonOptions(
+                                          height: 40.0,
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          iconPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Space Grotesk',
+                                                    color: Colors.white,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: const BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                        ),
+                                      ),
+                                    if (FFAppState().appCart.contains(
+                                            cupcakeProductFirebaseCupcakesRecord
+                                                .reference) ==
+                                        false)
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 5.0, 0.0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            // adiciona na lista carrinho
+                                            setState(() {
+                                              FFAppState().addToAppCart(
+                                                  cupcakeProductFirebaseCupcakesRecord
+                                                      .reference);
+                                            });
+                                            // att firebasee quantidade
+
+                                            await cupcakeProductFirebaseCupcakesRecord
+                                                .reference
+                                                .update(
+                                                    createFirebaseCupcakesRecordData(
+                                              quantity:
+                                                  _model.countControllerValue,
+                                            ));
+                                            // update appPrecoQtd
+                                            setState(() {
+                                              FFAppState().appTempQntPrice =
+                                                  functions.fncQntPrice(
+                                                      cupcakeProductFirebaseCupcakesRecord
+                                                          .price,
+                                                      _model.localAppQntItens,
+                                                      FFAppState()
+                                                          .appTempQntPrice);
+                                            });
+                                            // att firebasee qntprice
+
+                                            await cupcakeProductFirebaseCupcakesRecord
+                                                .reference
+                                                .update(
+                                                    createFirebaseCupcakesRecordData(
+                                              qtnPrice:
+                                                  FFAppState().appTempQntPrice,
+                                            ));
+                                            // soma total carrinho
+                                            setState(() {
+                                              FFAppState()
+                                                  .appSomaCart = FFAppState()
+                                                      .appSomaCart +
+                                                  functions.fncQntPrice(
+                                                      cupcakeProductFirebaseCupcakesRecord
+                                                          .price,
+                                                      _model
+                                                          .countControllerValue!,
+                                                      FFAppState()
+                                                          .appTempQntPrice);
+                                            });
+                                            // clicou botao adicionar carrinho s/n
+
+                                            await cupcakeProductFirebaseCupcakesRecord
+                                                .reference
+                                                .update(
+                                                    createFirebaseCupcakesRecordData(
+                                              id: '1',
+                                            ));
+                                            // pop up ok
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: const Text('adicionado'),
+                                                  content: const Text(
+                                                      'Produto adicionado ao carrinho!'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: const Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+
+                                            context.pushNamed(
+                                                'home_cupcakelist_grid');
+                                          },
+                                          text: 'Adicionar ao Carrinho',
+                                          options: FFButtonOptions(
+                                            height: 40.0,
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            iconPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily:
+                                                          'Space Grotesk',
+                                                      color: Colors.white,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            elevation: 3.0,
+                                            borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ),
-                  Material(
-                    color: Colors.transparent,
-                    elevation: 3.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0.0),
-                    ),
-                    child: Container(
-                      width: double.infinity,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 4.0,
-                            color: Color(0x320F1113),
-                            offset: Offset(
-                              0.0,
-                              -2.0,
-                            ),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(0.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 34.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Stack(
-                              children: [
-                                if (FFAppState().appCart.contains(
-                                        cupcakeProductFirebaseCupcakesRecord
-                                            .reference) ==
-                                    true)
-                                  FFButtonWidget(
-                                    onPressed: () async {
-                                      // reduzir valor somaCart
-                                      setState(() {
-                                        FFAppState().appSomaCart = FFAppState()
-                                                .appSomaCart +
-                                            functions.fncSomaNegativa(
-                                                cupcakeProductFirebaseCupcakesRecord
-                                                    .qtnPrice);
-                                      });
-                                      // att firebasee quantidade
-
-                                      await cupcakeProductFirebaseCupcakesRecord
-                                          .reference
-                                          .update(
-                                              createFirebaseCupcakesRecordData(
-                                        quantity: _model.countControllerValue,
-                                      ));
-                                      // update appPrecoQtd
-                                      setState(() {
-                                        FFAppState().appTempQntPrice =
-                                            functions.fncQntPrice(
-                                                cupcakeProductFirebaseCupcakesRecord
-                                                    .price,
-                                                _model.localAppQntItens,
-                                                FFAppState().appTempQntPrice);
-                                      });
-                                      // att firebasee qntprice
-
-                                      await cupcakeProductFirebaseCupcakesRecord
-                                          .reference
-                                          .update(
-                                              createFirebaseCupcakesRecordData(
-                                        qtnPrice: FFAppState().appTempQntPrice,
-                                      ));
-                                      // soma total carrinho
-                                      setState(() {
-                                        FFAppState().appSomaCart = FFAppState()
-                                                .appSomaCart +
-                                            functions.fncQntPrice(
-                                                cupcakeProductFirebaseCupcakesRecord
-                                                    .price,
-                                                _model.countControllerValue!,
-                                                FFAppState().appTempQntPrice);
-                                      });
-                                      // pop up ok
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: const Text('atualizado'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: const Text(
-                                                    'atualizado vai pro carrinho?'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-
-                                      context.pushNamed('cart');
-                                    },
-                                    text: 'Atualizar Carrinho',
-                                    options: FFButtonOptions(
-                                      height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                      iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Space Grotesk',
-                                            color: Colors.white,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: const BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(20.0),
-                                    ),
-                                  ),
-                                if (FFAppState().appCart.contains(
-                                        cupcakeProductFirebaseCupcakesRecord
-                                            .reference) ==
-                                    false)
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 5.0, 0.0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        // adiciona na lista carrinho
-                                        setState(() {
-                                          FFAppState().addToAppCart(
-                                              cupcakeProductFirebaseCupcakesRecord
-                                                  .reference);
-                                        });
-                                        // att firebasee quantidade
-
-                                        await cupcakeProductFirebaseCupcakesRecord
-                                            .reference
-                                            .update(
-                                                createFirebaseCupcakesRecordData(
-                                          quantity: _model.countControllerValue,
-                                        ));
-                                        // update appPrecoQtd
-                                        setState(() {
-                                          FFAppState().appTempQntPrice =
-                                              functions.fncQntPrice(
-                                                  cupcakeProductFirebaseCupcakesRecord
-                                                      .price,
-                                                  _model.localAppQntItens,
-                                                  FFAppState().appTempQntPrice);
-                                        });
-                                        // att firebasee qntprice
-
-                                        await cupcakeProductFirebaseCupcakesRecord
-                                            .reference
-                                            .update(
-                                                createFirebaseCupcakesRecordData(
-                                          qtnPrice:
-                                              FFAppState().appTempQntPrice,
-                                        ));
-                                        // soma total carrinho
-                                        setState(() {
-                                          FFAppState()
-                                              .appSomaCart = FFAppState()
-                                                  .appSomaCart +
-                                              functions.fncQntPrice(
-                                                  cupcakeProductFirebaseCupcakesRecord
-                                                      .price,
-                                                  _model.countControllerValue!,
-                                                  FFAppState().appTempQntPrice);
-                                        });
-                                        // clicou botao adicionar carrinho s/n
-
-                                        await cupcakeProductFirebaseCupcakesRecord
-                                            .reference
-                                            .update(
-                                                createFirebaseCupcakesRecordData(
-                                          id: '1',
-                                        ));
-                                        // pop up ok
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: const Text('ok'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: const Text('vai pra lista?'),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
-
-                                        context.pushNamed('home_cupcakelist');
-                                      },
-                                      text: 'Adicionar ao Carrinho',
-                                      options: FFButtonOptions(
-                                        height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Space Grotesk',
-                                              color: Colors.white,
-                                              letterSpacing: 0.0,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(20.0),
-                                      ),
-                                    ),
-                                  ),
-                              ],
-                            ),
-                            Stack(
-                              children: [
-                                Align(
-                                  alignment: const AlignmentDirectional(-0.72, -0.98),
-                                  child: Text(
-                                    'CC',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Space Grotesk',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: const AlignmentDirectional(-0.18, -0.08),
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      _model.countControllerValue?.toString(),
-                                      '99',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Space Grotesk',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Stack(
-                              children: [
-                                Align(
-                                  alignment: const AlignmentDirectional(-0.72, -0.98),
-                                  child: Text(
-                                    'AppTQI',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Space Grotesk',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: const AlignmentDirectional(-0.18, -0.08),
-                                  child: Text(
-                                    FFAppState().appTempQntItens.toString(),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Space Grotesk',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Stack(
-                              children: [
-                                Align(
-                                  alignment: const AlignmentDirectional(-0.72, -0.98),
-                                  child: Text(
-                                    'quantiyy',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Space Grotesk',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: const AlignmentDirectional(-0.18, -0.08),
-                                  child: Text(
-                                    cupcakeProductFirebaseCupcakesRecord
-                                        .quantity
-                                        .toString(),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Space Grotesk',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ).animateOnPageLoad(
-                      animationsMap['containerOnPageLoadAnimation']!),
                 ],
               ),
             ),

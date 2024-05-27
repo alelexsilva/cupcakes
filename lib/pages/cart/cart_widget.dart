@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'cart_model.dart';
@@ -32,8 +31,6 @@ class _CartWidgetState extends State<CartWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CartModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -479,203 +476,209 @@ class _CartWidgetState extends State<CartWidget> {
                   child: Stack(
                     alignment: const AlignmentDirectional(0.0, 1.0),
                     children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      Container(
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        height: MediaQuery.sizeOf(context).height * 0.3,
+                        constraints: BoxConstraints(
+                          maxWidth: MediaQuery.sizeOf(context).width * 1.0,
+                          maxHeight: MediaQuery.sizeOf(context).height * 0.4,
+                        ),
+                        decoration: const BoxDecoration(),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 20.0, 0.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    10.0, 10.0, 10.0, 10.0),
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    context.pushNamed('home_cupcakelist');
-                                  },
-                                  text: 'Adicionar produtos',
-                                  options: FFButtonOptions(
-                                    height: 20.0,
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Space Grotesk',
-                                          color: Colors.white,
-                                          letterSpacing: 0.0,
+                                        10.0, 10.0, 10.0, 10.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        context
+                                            .pushNamed('home_cupcakelist_grid');
+                                      },
+                                      text: 'Adicionar produtos',
+                                      options: FFButtonOptions(
+                                        height: 20.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Space Grotesk',
+                                              color: Colors.white,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
                                         ),
-                                    elevation: 3.0,
-                                    borderSide: const BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1.0,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                ),
+                                ],
                               ),
-                            ],
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 0.13),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Row(
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, 0.13),
+                                child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    if (FFAppState().appSomaCart > 0.0)
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(-1.04, -1.04),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 0.0, 0.0),
-                                          child: Text(
-                                            'Frete: ',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Space Grotesk',
-                                                  fontSize: 20.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w900,
-                                                ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        if (FFAppState().appSomaCart > 0.0)
+                                          Align(
+                                            alignment: const AlignmentDirectional(
+                                                -1.04, -1.04),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 10.0, 0.0, 0.0),
+                                              child: Text(
+                                                'Frete: ',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Space Grotesk',
+                                                          fontSize: 20.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w900,
+                                                        ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    if (FFAppState().appSomaCart > 0.0)
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 20.0, 0.0),
-                                          child: Text(
-                                            'Grátis',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Space Grotesk',
-                                                  color: const Color(0xFF67C394),
-                                                  fontSize: 20.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w900,
-                                                ),
+                                        if (FFAppState().appSomaCart > 0.0)
+                                          Align(
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 10.0, 20.0, 0.0),
+                                              child: Text(
+                                                'Grátis',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Space Grotesk',
+                                                          color:
+                                                              const Color(0xFF67C394),
+                                                          fontSize: 20.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w900,
+                                                        ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
+                                      ],
+                                    ),
                                   ],
                                 ),
-                              ],
-                            ),
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              if (FFAppState().appSomaCart > 0.0)
-                                Align(
-                                  alignment: const AlignmentDirectional(-1.04, -1.04),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 10.0, 0.0, 10.0),
-                                    child: Text(
-                                      'Valor total: ',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Space Grotesk',
-                                            fontSize: 20.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w900,
-                                          ),
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  if (FFAppState().appSomaCart > 0.0)
+                                    Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.04, -1.04),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 10.0, 0.0, 10.0),
+                                        child: Text(
+                                          'Valor total: ',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Space Grotesk',
+                                                fontSize: 20.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w900,
+                                              ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
+                                  if (FFAppState().appSomaCart > 0.0)
+                                    Align(
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 10.0, 20.0, 10.0),
+                                        child: Text(
+                                          formatNumber(
+                                            FFAppState().appSomaCart,
+                                            formatType: FormatType.decimal,
+                                            decimalType:
+                                                DecimalType.commaDecimal,
+                                            currency: 'R\$',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Space Grotesk',
+                                                fontSize: 20.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w900,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
                               if (FFAppState().appSomaCart > 0.0)
                                 Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 10.0, 20.0, 10.0),
-                                    child: Text(
-                                      formatNumber(
-                                        FFAppState().appSomaCart,
-                                        formatType: FormatType.decimal,
-                                        decimalType: DecimalType.commaDecimal,
-                                        currency: 'R\$',
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Space Grotesk',
-                                            fontSize: 20.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              if (FFAppState().appSomaCart > 0.0)
-                                Align(
-                                  alignment: const AlignmentDirectional(-1.04, -1.04),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 10.0, 0.0, 10.0),
-                                    child: Text(
-                                      'Endereço: ',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Space Grotesk',
-                                            fontSize: 20.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                              if (FFAppState().appSomaCart > 0.0)
-                                Align(
-                                  alignment: const AlignmentDirectional(-1.04, -1.04),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 10.0, 0.0, 10.0),
+                                        20.0, 10.0, 20.0, 10.0),
                                     child: AuthUserStreamWidget(
-                                      builder: (context) => AutoSizeText(
-                                        '${valueOrDefault(currentUserDocument?.addressRua, '')}, ${valueOrDefault(currentUserDocument?.addressNumero, 0).toString()}, ${valueOrDefault(currentUserDocument?.addressBairro, '')}, Campo Limpo Paulista',
+                                      builder: (context) => Text(
+                                        'Endereço: ${valueOrDefault(currentUserDocument?.addressRua, '')}, ${valueOrDefault(currentUserDocument?.addressNumero, 0).toString()}, ${valueOrDefault(currentUserDocument?.addressBairro, '')}, Campo Limpo Paulista'
+                                            .maybeHandleOverflow(
+                                          maxChars: 100,
+                                          replacement: '…',
+                                        ),
                                         maxLines: 3,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Space Grotesk',
-                                              fontSize: 15.0,
+                                              fontSize: 13.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w900,
                                             ),
-                                        minFontSize: 12.0,
                                       ),
                                     ),
                                   ),
                                 ),
                             ],
                           ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
@@ -711,31 +714,6 @@ class _CartWidgetState extends State<CartWidget> {
                       ),
                     ),
                   ),
-                FFButtonWidget(
-                  onPressed: () async {
-                    context.pushNamed('testes');
-                  },
-                  text: 'Testes',
-                  options: FFButtonOptions(
-                    height: 40.0,
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Space Grotesk',
-                          color: Colors.white,
-                          letterSpacing: 0.0,
-                        ),
-                    elevation: 3.0,
-                    borderSide: const BorderSide(
-                      color: Colors.transparent,
-                      width: 1.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
               ],
             ),
           ),

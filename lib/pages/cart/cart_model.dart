@@ -16,39 +16,5 @@ class CartModel extends FlutterFlowModel<CartWidget> {
   }
 
   /// Action blocks.
-  Future aaaaa(BuildContext context) async {
-    if (FFAppState().appCart.isEmpty) {
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: const Text('vazio'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: const Text('vazio'),
-              ),
-            ],
-          );
-        },
-      );
-
-      context.pushNamed('home_cupcakelist');
-    } else {
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text(FFAppState().appCart.length.toString()),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text(FFAppState().appCart.length.toString()),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
+  Future aaaaa(BuildContext context) async {}
 }

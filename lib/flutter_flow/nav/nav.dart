@@ -7,7 +7,6 @@ import '/backend/backend.dart';
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -72,34 +71,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const HomeCupcakelistWidget() : const LoginWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? const HomeCupcakelistGridWidget()
+          : const LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? const HomeCupcakelistWidget()
+              ? const HomeCupcakelistGridWidget()
               : const LoginWidget(),
         ),
         FFRoute(
           name: 'login',
           path: '/login',
           builder: (context, params) => const LoginWidget(),
-        ),
-        FFRoute(
-          name: 'home_cupcakelist',
-          path: '/homeCupcakelist',
-          asyncParams: {
-            'cup': getDoc(
-                ['firebase_cupcakes'], FirebaseCupcakesRecord.fromSnapshot),
-          },
-          builder: (context, params) => HomeCupcakelistWidget(
-            cup: params.getParam(
-              'cup',
-              ParamType.Document,
-            ),
-          ),
         ),
         FFRoute(
           name: 'cupcake_product',
@@ -122,19 +108,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'cartold',
-          path: '/cartold',
-          builder: (context, params) => const CartoldWidget(),
-        ),
-        FFRoute(
           name: 'profile',
           path: '/profile',
           builder: (context, params) => const ProfileWidget(),
-        ),
-        FFRoute(
-          name: 'testes',
-          path: '/testes',
-          builder: (context, params) => const TestesWidget(),
         ),
         FFRoute(
           name: 'cart',
@@ -149,22 +125,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'password_reset',
-          path: '/passwordReset',
-          builder: (context, params) => const PasswordResetWidget(),
+          name: 'login_password_reset',
+          path: '/loginPasswordReset',
+          builder: (context, params) => const LoginPasswordResetWidget(),
         ),
         FFRoute(
-          name: 'password_change',
-          path: '/passwordChange',
-          builder: (context, params) => const PasswordChangeWidget(),
+          name: 'profile_password_change',
+          path: '/profilePasswordChange',
+          builder: (context, params) => const ProfilePasswordChangeWidget(),
         ),
         FFRoute(
-          name: 'address',
-          path: '/address',
+          name: 'profile_address',
+          path: '/profile_address',
           asyncParams: {
             'parUsers': getDoc(['users'], UsersRecord.fromSnapshot),
           },
-          builder: (context, params) => AddressWidget(
+          builder: (context, params) => ProfileAddressWidget(
             parUsers: params.getParam(
               'parUsers',
               ParamType.Document,
@@ -174,6 +150,25 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.DocumentReference,
               isList: false,
               collectionNamePath: ['users'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'profile_email_change',
+          path: '/profileEmailChange',
+          builder: (context, params) => const ProfileEmailChangeWidget(),
+        ),
+        FFRoute(
+          name: 'home_cupcakelist_grid',
+          path: '/homeCupcakelistGrid',
+          asyncParams: {
+            'cup': getDoc(
+                ['firebase_cupcakes'], FirebaseCupcakesRecord.fromSnapshot),
+          },
+          builder: (context, params) => HomeCupcakelistGridWidget(
+            cup: params.getParam(
+              'cup',
+              ParamType.Document,
             ),
           ),
         )
@@ -360,14 +355,14 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
+              ? Container(
+                  color: const Color(0x8FD43EED),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/4080411.png',
+                      width: 350.0,
+                      height: 350.0,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 )

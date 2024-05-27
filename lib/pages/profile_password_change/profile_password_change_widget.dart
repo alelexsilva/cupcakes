@@ -2,31 +2,35 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'password_reset_model.dart';
-export 'password_reset_model.dart';
+import 'profile_password_change_model.dart';
+export 'profile_password_change_model.dart';
 
-class PasswordResetWidget extends StatefulWidget {
-  const PasswordResetWidget({super.key});
+class ProfilePasswordChangeWidget extends StatefulWidget {
+  const ProfilePasswordChangeWidget({super.key});
 
   @override
-  State<PasswordResetWidget> createState() => _PasswordResetWidgetState();
+  State<ProfilePasswordChangeWidget> createState() =>
+      _ProfilePasswordChangeWidgetState();
 }
 
-class _PasswordResetWidgetState extends State<PasswordResetWidget> {
-  late PasswordResetModel _model;
+class _ProfilePasswordChangeWidgetState
+    extends State<ProfilePasswordChangeWidget> {
+  late ProfilePasswordChangeModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PasswordResetModel());
+    _model = createModel(context, () => ProfilePasswordChangeModel());
 
-    _model.emailAddressTextController ??= TextEditingController();
-    _model.emailAddressFocusNode ??= FocusNode();
+    _model.senhaatualTextController ??= TextEditingController();
+    _model.senhaatualFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    _model.senhanovaTextController ??= TextEditingController();
+    _model.senhanovaFocusNode ??= FocusNode();
   }
 
   @override
@@ -126,19 +130,9 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                 child: Text(
-                  'Esqueci minha senha',
+                  'Alterar senha',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Plus Jakarta Sans',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 16.0),
-                child: Text(
-                  'Enviaremos um link para seu email cadastrado para resetar sua senha.',
-                  style: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily: 'Space Grotesk',
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -148,17 +142,17 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
                 child: SizedBox(
                   width: double.infinity,
                   child: TextFormField(
-                    controller: _model.emailAddressTextController,
-                    focusNode: _model.emailAddressFocusNode,
-                    autofillHints: const [AutofillHints.email],
-                    obscureText: false,
+                    controller: _model.senhaatualTextController,
+                    focusNode: _model.senhaatualFocusNode,
+                    autofillHints: const [AutofillHints.password],
+                    obscureText: !_model.senhaatualVisibility,
                     decoration: InputDecoration(
                       labelStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
                                 fontFamily: 'Space Grotesk',
                                 letterSpacing: 0.0,
                               ),
-                      hintText: 'Digite seu email',
+                      hintText: 'Digite sua senha atual.',
                       hintStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
                                 fontFamily: 'Space Grotesk',
@@ -197,15 +191,107 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
                           FlutterFlowTheme.of(context).secondaryBackground,
                       contentPadding: const EdgeInsetsDirectional.fromSTEB(
                           24.0, 24.0, 20.0, 24.0),
+                      suffixIcon: InkWell(
+                        onTap: () => setState(
+                          () => _model.senhaatualVisibility =
+                              !_model.senhaatualVisibility,
+                        ),
+                        focusNode: FocusNode(skipTraversal: true),
+                        child: Icon(
+                          _model.senhaatualVisibility
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                          color: const Color(0xFF757575),
+                          size: 22.0,
+                        ),
+                      ),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Space Grotesk',
                           letterSpacing: 0.0,
                         ),
-                    maxLines: null,
+                    cursorColor: FlutterFlowTheme.of(context).primary,
+                    validator: _model.senhaatualTextControllerValidator
+                        .asValidator(context),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: TextFormField(
+                    controller: _model.senhanovaTextController,
+                    focusNode: _model.senhanovaFocusNode,
+                    autofillHints: const [AutofillHints.password],
+                    obscureText: !_model.senhanovaVisibility,
+                    decoration: InputDecoration(
+                      labelStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Space Grotesk',
+                                letterSpacing: 0.0,
+                              ),
+                      hintText: 'Digite sua nova senha.',
+                      hintStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Space Grotesk',
+                                letterSpacing: 0.0,
+                              ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).alternate,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      filled: true,
+                      fillColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          24.0, 24.0, 20.0, 24.0),
+                      suffixIcon: InkWell(
+                        onTap: () => setState(
+                          () => _model.senhanovaVisibility =
+                              !_model.senhanovaVisibility,
+                        ),
+                        focusNode: FocusNode(skipTraversal: true),
+                        child: Icon(
+                          _model.senhanovaVisibility
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                          color: const Color(0xFF757575),
+                          size: 22.0,
+                        ),
+                      ),
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Space Grotesk',
+                          letterSpacing: 0.0,
+                        ),
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: FlutterFlowTheme.of(context).primary,
-                    validator: _model.emailAddressTextControllerValidator
+                    validator: _model.senhanovaTextControllerValidator
                         .asValidator(context),
                   ),
                 ),
@@ -217,22 +303,30 @@ class _PasswordResetWidgetState extends State<PasswordResetWidget> {
                       const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      if (_model.emailAddressTextController.text.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Email required!',
-                            ),
-                          ),
-                        );
-                        return;
-                      }
-                      await authManager.resetPassword(
-                        email: _model.emailAddressTextController.text,
-                        context: context,
+                      await actions.changePassword(
+                        _model.senhaatualTextController.text,
+                        _model.senhanovaTextController.text,
+                        currentUserEmail,
                       );
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            content: const Text('Senha alterada!'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: const Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+
+                      context.pushNamed('profile');
                     },
-                    text: 'Enviar link',
+                    text: 'Alterar senha',
                     options: FFButtonOptions(
                       width: double.infinity,
                       height: 50.0,

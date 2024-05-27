@@ -76,6 +76,66 @@ class FirebaseCupcakesRecord extends FirestoreRecord {
   String get id => _id ?? '';
   bool hasId() => _id != null;
 
+  // "cal" field.
+  int? _cal;
+  int get cal => _cal ?? 0;
+  bool hasCal() => _cal != null;
+
+  // "carb" field.
+  int? _carb;
+  int get carb => _carb ?? 0;
+  bool hasCarb() => _carb != null;
+
+  // "sugar" field.
+  int? _sugar;
+  int get sugar => _sugar ?? 0;
+  bool hasSugar() => _sugar != null;
+
+  // "protein" field.
+  int? _protein;
+  int get protein => _protein ?? 0;
+  bool hasProtein() => _protein != null;
+
+  // "gord" field.
+  int? _gord;
+  int get gord => _gord ?? 0;
+  bool hasGord() => _gord != null;
+
+  // "gord_sat" field.
+  int? _gordSat;
+  int get gordSat => _gordSat ?? 0;
+  bool hasGordSat() => _gordSat != null;
+
+  // "gord_mono" field.
+  int? _gordMono;
+  int get gordMono => _gordMono ?? 0;
+  bool hasGordMono() => _gordMono != null;
+
+  // "gord_poli" field.
+  int? _gordPoli;
+  int get gordPoli => _gordPoli ?? 0;
+  bool hasGordPoli() => _gordPoli != null;
+
+  // "colesterol" field.
+  int? _colesterol;
+  int get colesterol => _colesterol ?? 0;
+  bool hasColesterol() => _colesterol != null;
+
+  // "fibras" field.
+  int? _fibras;
+  int get fibras => _fibras ?? 0;
+  bool hasFibras() => _fibras != null;
+
+  // "sodio" field.
+  int? _sodio;
+  int get sodio => _sodio ?? 0;
+  bool hasSodio() => _sodio != null;
+
+  // "potassio" field.
+  int? _potassio;
+  int get potassio => _potassio ?? 0;
+  bool hasPotassio() => _potassio != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _description = snapshotData['description'] as String?;
@@ -89,6 +149,18 @@ class FirebaseCupcakesRecord extends FirestoreRecord {
     _img = snapshotData['img'] as String?;
     _qtnPrice = castToType<double>(snapshotData['QtnPrice']);
     _id = snapshotData['id'] as String?;
+    _cal = castToType<int>(snapshotData['cal']);
+    _carb = castToType<int>(snapshotData['carb']);
+    _sugar = castToType<int>(snapshotData['sugar']);
+    _protein = castToType<int>(snapshotData['protein']);
+    _gord = castToType<int>(snapshotData['gord']);
+    _gordSat = castToType<int>(snapshotData['gord_sat']);
+    _gordMono = castToType<int>(snapshotData['gord_mono']);
+    _gordPoli = castToType<int>(snapshotData['gord_poli']);
+    _colesterol = castToType<int>(snapshotData['colesterol']);
+    _fibras = castToType<int>(snapshotData['fibras']);
+    _sodio = castToType<int>(snapshotData['sodio']);
+    _potassio = castToType<int>(snapshotData['potassio']);
   }
 
   static CollectionReference get collection =>
@@ -139,6 +211,18 @@ Map<String, dynamic> createFirebaseCupcakesRecordData({
   String? img,
   double? qtnPrice,
   String? id,
+  int? cal,
+  int? carb,
+  int? sugar,
+  int? protein,
+  int? gord,
+  int? gordSat,
+  int? gordMono,
+  int? gordPoli,
+  int? colesterol,
+  int? fibras,
+  int? sodio,
+  int? potassio,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -154,6 +238,18 @@ Map<String, dynamic> createFirebaseCupcakesRecordData({
       'img': img,
       'QtnPrice': qtnPrice,
       'id': id,
+      'cal': cal,
+      'carb': carb,
+      'sugar': sugar,
+      'protein': protein,
+      'gord': gord,
+      'gord_sat': gordSat,
+      'gord_mono': gordMono,
+      'gord_poli': gordPoli,
+      'colesterol': colesterol,
+      'fibras': fibras,
+      'sodio': sodio,
+      'potassio': potassio,
     }.withoutNulls,
   );
 
@@ -177,7 +273,19 @@ class FirebaseCupcakesRecordDocumentEquality
         e1?.quantity == e2?.quantity &&
         e1?.img == e2?.img &&
         e1?.qtnPrice == e2?.qtnPrice &&
-        e1?.id == e2?.id;
+        e1?.id == e2?.id &&
+        e1?.cal == e2?.cal &&
+        e1?.carb == e2?.carb &&
+        e1?.sugar == e2?.sugar &&
+        e1?.protein == e2?.protein &&
+        e1?.gord == e2?.gord &&
+        e1?.gordSat == e2?.gordSat &&
+        e1?.gordMono == e2?.gordMono &&
+        e1?.gordPoli == e2?.gordPoli &&
+        e1?.colesterol == e2?.colesterol &&
+        e1?.fibras == e2?.fibras &&
+        e1?.sodio == e2?.sodio &&
+        e1?.potassio == e2?.potassio;
   }
 
   @override
@@ -193,7 +301,19 @@ class FirebaseCupcakesRecordDocumentEquality
         e?.quantity,
         e?.img,
         e?.qtnPrice,
-        e?.id
+        e?.id,
+        e?.cal,
+        e?.carb,
+        e?.sugar,
+        e?.protein,
+        e?.gord,
+        e?.gordSat,
+        e?.gordMono,
+        e?.gordPoli,
+        e?.colesterol,
+        e?.fibras,
+        e?.sodio,
+        e?.potassio
       ]);
 
   @override
