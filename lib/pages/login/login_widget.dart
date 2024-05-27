@@ -873,52 +873,57 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   ),
                                                 ),
                                               ),
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  GoRouter.of(context)
-                                                      .prepareAuthEvent();
-                                                  final user = await authManager
-                                                      .signInAnonymously(
-                                                          context);
-                                                  if (user == null) {
-                                                    return;
-                                                  }
+                                              Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    GoRouter.of(context)
+                                                        .prepareAuthEvent();
+                                                    final user =
+                                                        await authManager
+                                                            .signInAnonymously(
+                                                                context);
+                                                    if (user == null) {
+                                                      return;
+                                                    }
 
-                                                  context.goNamedAuth(
-                                                      'home_cupcakelist_grid',
-                                                      context.mounted);
-                                                },
-                                                text: 'Login Anônimo',
-                                                options: FFButtonOptions(
-                                                  height: 40.0,
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          24.0, 0.0, 24.0, 0.0),
-                                                  iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Space Grotesk',
-                                                            color: Colors.white,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                  elevation: 3.0,
-                                                  borderSide: const BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1.0,
+                                                    context.goNamedAuth(
+                                                        'home_cupcakelist_grid',
+                                                        context.mounted);
+                                                  },
+                                                  text: 'Login Anônimo',
+                                                  options: FFButtonOptions(
+                                                    height: 40.0,
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(24.0, 0.0,
+                                                                24.0, 0.0),
+                                                    iconPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Space Grotesk',
+                                                          color: Colors.white,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    elevation: 3.0,
+                                                    borderSide: const BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
                                                 ),
                                               ),
                                             ],

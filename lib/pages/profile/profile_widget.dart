@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
@@ -216,12 +217,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   },
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10.0),
-                                    child: Image.network(
-                                      currentUserPhoto,
+                                    child: CachedNetworkImage(
+                                      fadeInDuration:
+                                          const Duration(milliseconds: 500),
+                                      fadeOutDuration:
+                                          const Duration(milliseconds: 500),
+                                      imageUrl: currentUserPhoto,
                                       width: 100.0,
                                       height: 100.0,
                                       fit: BoxFit.cover,
-                                      errorBuilder:
+                                      errorWidget:
                                           (context, error, stackTrace) =>
                                               Image.asset(
                                         'assets/images/error_image.png',
