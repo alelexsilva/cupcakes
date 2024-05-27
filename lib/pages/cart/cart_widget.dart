@@ -203,7 +203,7 @@ class _CartWidgetState extends State<CartWidget> {
                                   final varCartItem = varCart[varCartIndex];
                                   return Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 0.0, 8.0),
+                                        16.0, 0.0, 16.0, 8.0),
                                     child:
                                         StreamBuilder<FirebaseCupcakesRecord>(
                                       stream:
