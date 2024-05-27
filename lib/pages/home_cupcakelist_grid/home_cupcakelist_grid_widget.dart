@@ -276,7 +276,7 @@ class _HomeCupcakelistGridWidgetState extends State<HomeCupcakelistGridWidget> {
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
+                                              MainAxisAlignment.center,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
@@ -288,8 +288,11 @@ class _HomeCupcakelistGridWidgetState extends State<HomeCupcakelistGridWidget> {
                                                     BorderRadius.circular(24.0),
                                                 child: Image.network(
                                                   columnCupcakesItem.img,
-                                                  width: 80.0,
-                                                  height: 80.0,
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          1.0,
+                                                  height: 130.0,
                                                   fit: BoxFit.cover,
                                                   alignment:
                                                       const Alignment(0.0, -1.0),
@@ -410,7 +413,7 @@ class _HomeCupcakelistGridWidgetState extends State<HomeCupcakelistGridWidget> {
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
+                                              MainAxisAlignment.center,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
@@ -422,8 +425,11 @@ class _HomeCupcakelistGridWidgetState extends State<HomeCupcakelistGridWidget> {
                                                     BorderRadius.circular(24.0),
                                                 child: Image.network(
                                                   columnCupcakesItem.img,
-                                                  width: 80.0,
-                                                  height: 80.0,
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          1.0,
+                                                  height: 130.0,
                                                   fit: BoxFit.cover,
                                                   alignment:
                                                       const Alignment(0.0, -1.0),

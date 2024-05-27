@@ -244,7 +244,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               children: [
                                 AuthUserStreamWidget(
                                   builder: (context) => Text(
-                                    currentUserDisplayName,
+                                    currentUserDisplayName != ''
+                                        ? currentUserDisplayName
+                                        : 'Anônimo',
                                     style: FlutterFlowTheme.of(context)
                                         .headlineSmall
                                         .override(
@@ -257,7 +259,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Text(
-                                    currentUserEmail,
+                                    currentUserEmail != ''
+                                        ? currentUserEmail
+                                        : 'Sem email vinculado (Anônimo)',
                                     style: FlutterFlowTheme.of(context)
                                         .bodySmall
                                         .override(
