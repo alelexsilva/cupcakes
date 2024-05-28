@@ -6,6 +6,11 @@ class ProfileEmailChangeModel
     extends FlutterFlowModel<ProfileEmailChangeWidget> {
   ///  State fields for stateful widgets in this page.
 
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
+
   // State field(s) for nome widget.
   FocusNode? nomeFocusNode;
   TextEditingController? nomeTextController;

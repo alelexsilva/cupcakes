@@ -115,12 +115,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'cart',
           path: '/cart',
+          asyncParams: {
+            'cupcakerefcart': getDoc(
+                ['firebase_cupcakes'], FirebaseCupcakesRecord.fromSnapshot),
+          },
           builder: (context, params) => CartWidget(
             varCart2: params.getParam(
               'varCart2',
               ParamType.DocumentReference,
               isList: false,
               collectionNamePath: ['firebase_cupcakes'],
+            ),
+            cupcakerefcart: params.getParam(
+              'cupcakerefcart',
+              ParamType.Document,
             ),
           ),
         ),
