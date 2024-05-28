@@ -555,6 +555,10 @@ class _CartWidgetState extends State<CartWidget> {
                                         } else {
                                           return;
                                         }
+
+                                        setState(() {
+                                          FFAppState().appCart = [];
+                                        });
                                       },
                                       child: SizedBox(
                                         width: 270.0,

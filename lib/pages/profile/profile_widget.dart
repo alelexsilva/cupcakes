@@ -156,7 +156,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     fadeInDuration: const Duration(milliseconds: 500),
                                     fadeOutDuration:
                                         const Duration(milliseconds: 500),
-                                    imageUrl: currentUserPhoto,
+                                    imageUrl: valueOrDefault(
+                                        currentUserDocument?.photoImg, ''),
                                     width: 100.0,
                                     height: 100.0,
                                     fit: BoxFit.cover,

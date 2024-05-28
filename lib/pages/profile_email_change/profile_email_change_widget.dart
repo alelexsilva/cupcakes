@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'profile_email_change_model.dart';
 export 'profile_email_change_model.dart';
@@ -211,14 +210,12 @@ class _ProfileEmailChangeWidgetState extends State<ProfileEmailChangeWidget> {
                         topLeft: Radius.circular(100.0),
                         topRight: Radius.circular(100.0),
                       ),
-                      child: CachedNetworkImage(
-                        fadeInDuration: const Duration(milliseconds: 500),
-                        fadeOutDuration: const Duration(milliseconds: 500),
-                        imageUrl: _model.uploadedFileUrl,
+                      child: Image.network(
+                        _model.uploadedFileUrl,
                         width: 100.0,
                         height: 100.0,
                         fit: BoxFit.cover,
-                        errorWidget: (context, error, stackTrace) =>
+                        errorBuilder: (context, error, stackTrace) =>
                             Image.asset(
                           'assets/images/error_image.png',
                           width: 100.0,
@@ -438,6 +435,8 @@ class _ProfileEmailChangeWidgetState extends State<ProfileEmailChangeWidget> {
                         email: _model.emailTextController.text,
                         displayName: _model.nomeTextController.text,
                         surname: _model.sobrenomeTextController.text,
+                        photoUrl: _model.uploadedFileUrl,
+                        photoImg: _model.uploadedFileUrl,
                       ));
                       await showDialog(
                         context: context,

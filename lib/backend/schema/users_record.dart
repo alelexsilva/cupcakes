@@ -66,6 +66,11 @@ class UsersRecord extends FirestoreRecord {
   String get addressBairro => _addressBairro ?? '';
   bool hasAddressBairro() => _addressBairro != null;
 
+  // "photo_img" field.
+  String? _photoImg;
+  String get photoImg => _photoImg ?? '';
+  bool hasPhotoImg() => _photoImg != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -77,6 +82,7 @@ class UsersRecord extends FirestoreRecord {
     _addressRua = snapshotData['address_rua'] as String?;
     _addressNumero = castToType<int>(snapshotData['address_numero']);
     _addressBairro = snapshotData['address_bairro'] as String?;
+    _photoImg = snapshotData['photo_img'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -123,6 +129,7 @@ Map<String, dynamic> createUsersRecordData({
   String? addressRua,
   int? addressNumero,
   String? addressBairro,
+  String? photoImg,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -136,6 +143,7 @@ Map<String, dynamic> createUsersRecordData({
       'address_rua': addressRua,
       'address_numero': addressNumero,
       'address_bairro': addressBairro,
+      'photo_img': photoImg,
     }.withoutNulls,
   );
 
@@ -156,7 +164,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.surname == e2?.surname &&
         e1?.addressRua == e2?.addressRua &&
         e1?.addressNumero == e2?.addressNumero &&
-        e1?.addressBairro == e2?.addressBairro;
+        e1?.addressBairro == e2?.addressBairro &&
+        e1?.photoImg == e2?.photoImg;
   }
 
   @override
@@ -170,7 +179,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.surname,
         e?.addressRua,
         e?.addressNumero,
-        e?.addressBairro
+        e?.addressBairro,
+        e?.photoImg
       ]);
 
   @override
