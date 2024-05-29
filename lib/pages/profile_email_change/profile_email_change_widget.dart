@@ -134,96 +134,183 @@ class _ProfileEmailChangeWidgetState extends State<ProfileEmailChangeWidget> {
                     ),
                   ),
                 ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-                child: Text(
-                  'Alterar dados pessoais',
-                  style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Plus Jakarta Sans',
-                        letterSpacing: 0.0,
-                      ),
+              Align(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                  child: Text(
+                    'Alterar dados pessoais',
+                    style: FlutterFlowTheme.of(context).headlineMedium.override(
+                          fontFamily: 'Plus Jakarta Sans',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    final selectedMedia =
+                        await selectMediaWithSourceBottomSheet(
+                      context: context,
+                      allowPhoto: true,
+                    );
+                    if (selectedMedia != null &&
+                        selectedMedia.every((m) =>
+                            validateFileFormat(m.storagePath, context))) {
+                      setState(() => _model.isDataUploading = true);
+                      var selectedUploadedFiles = <FFUploadedFile>[];
+
+                      var downloadUrls = <String>[];
+                      try {
+                        selectedUploadedFiles = selectedMedia
+                            .map((m) => FFUploadedFile(
+                                  name: m.storagePath.split('/').last,
+                                  bytes: m.bytes,
+                                  height: m.dimensions?.height,
+                                  width: m.dimensions?.width,
+                                  blurHash: m.blurHash,
+                                ))
+                            .toList();
+
+                        downloadUrls = (await Future.wait(
+                          selectedMedia.map(
+                            (m) async =>
+                                await uploadData(m.storagePath, m.bytes),
+                          ),
+                        ))
+                            .where((u) => u != null)
+                            .map((u) => u!)
+                            .toList();
+                      } finally {
+                        _model.isDataUploading = false;
+                      }
+                      if (selectedUploadedFiles.length ==
+                              selectedMedia.length &&
+                          downloadUrls.length == selectedMedia.length) {
+                        setState(() {
+                          _model.uploadedLocalFile =
+                              selectedUploadedFiles.first;
+                          _model.uploadedFileUrl = downloadUrls.first;
+                        });
+                      } else {
+                        setState(() {});
+                        return;
+                      }
+                    }
+                  },
+                  child: Container(
+                    width: 100.0,
+                    height: 100.0,
+                    decoration: const BoxDecoration(),
+                    child: Builder(
+                      builder: (context) {
+                        if (currentUserPhoto != '') {
+                          return Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(100.0),
+                                  bottomRight: Radius.circular(100.0),
+                                  topLeft: Radius.circular(100.0),
+                                  topRight: Radius.circular(100.0),
+                                ),
+                                child: Image.network(
+                                  currentUserPhoto,
+                                  width: 100.0,
+                                  height: 100.0,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Image.asset(
+                                    'assets/images/error_image.png',
+                                    width: 100.0,
+                                    height: 100.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        } else if (_model.uploadedFileUrl != '') {
+                          return Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(100.0),
+                                  bottomRight: Radius.circular(100.0),
+                                  topLeft: Radius.circular(100.0),
+                                  topRight: Radius.circular(100.0),
+                                ),
+                                child: Image.network(
+                                  _model.uploadedFileUrl,
+                                  width: 100.0,
+                                  height: 100.0,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Image.asset(
+                                    'assets/images/error_image.png',
+                                    width: 100.0,
+                                    height: 100.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        } else {
+                          return Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(100.0),
+                                  bottomRight: Radius.circular(100.0),
+                                  topLeft: Radius.circular(100.0),
+                                  topRight: Radius.circular(100.0),
+                                ),
+                                child: Image.asset(
+                                  'assets/images/download_(1).png',
+                                  width: 100.0,
+                                  height: 100.0,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Image.asset(
+                                    'assets/images/error_image.png',
+                                    width: 100.0,
+                                    height: 100.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ),
               ),
               Align(
                 alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      final selectedMedia =
-                          await selectMediaWithSourceBottomSheet(
-                        context: context,
-                        allowPhoto: true,
-                      );
-                      if (selectedMedia != null &&
-                          selectedMedia.every((m) =>
-                              validateFileFormat(m.storagePath, context))) {
-                        setState(() => _model.isDataUploading = true);
-                        var selectedUploadedFiles = <FFUploadedFile>[];
-
-                        var downloadUrls = <String>[];
-                        try {
-                          selectedUploadedFiles = selectedMedia
-                              .map((m) => FFUploadedFile(
-                                    name: m.storagePath.split('/').last,
-                                    bytes: m.bytes,
-                                    height: m.dimensions?.height,
-                                    width: m.dimensions?.width,
-                                    blurHash: m.blurHash,
-                                  ))
-                              .toList();
-
-                          downloadUrls = (await Future.wait(
-                            selectedMedia.map(
-                              (m) async =>
-                                  await uploadData(m.storagePath, m.bytes),
-                            ),
-                          ))
-                              .where((u) => u != null)
-                              .map((u) => u!)
-                              .toList();
-                        } finally {
-                          _model.isDataUploading = false;
-                        }
-                        if (selectedUploadedFiles.length ==
-                                selectedMedia.length &&
-                            downloadUrls.length == selectedMedia.length) {
-                          setState(() {
-                            _model.uploadedLocalFile =
-                                selectedUploadedFiles.first;
-                            _model.uploadedFileUrl = downloadUrls.first;
-                          });
-                        } else {
-                          setState(() {});
-                          return;
-                        }
-                      }
-                    },
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(100.0),
-                        bottomRight: Radius.circular(100.0),
-                        topLeft: Radius.circular(100.0),
-                        topRight: Radius.circular(100.0),
-                      ),
-                      child: Image.network(
-                        _model.uploadedFileUrl,
-                        width: 100.0,
-                        height: 100.0,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
-                            Image.asset(
-                          'assets/images/error_image.png',
-                          width: 100.0,
-                          height: 100.0,
-                          fit: BoxFit.cover,
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                  child: Text(
+                    'Alterar foto',
+                    style: FlutterFlowTheme.of(context).headlineMedium.override(
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontSize: 8.0,
+                          letterSpacing: 0.0,
                         ),
-                      ),
-                    ),
                   ),
                 ),
               ),
